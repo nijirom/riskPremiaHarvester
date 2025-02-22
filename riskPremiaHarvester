@@ -1,0 +1,42 @@
+import pandas as pd
+import yfinance as yf
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Step 1: Download historical price data for equity risk premium strategy
+tickers = ['FGL', 'VOO', 'SPY']  # Equity-focused ETFs
+start_date = '2015-01-01'
+end_date = '2025-01-01'
+
+data = yf.download(tickers, start=start_date, end=end_date)['Adj Close']
+
+# Step 2: Calculate excess returns (equity risk premium relative to risk-free rate)
+# For simplicity, assume risk-free rate is 0 (or could use a constant risk-free rate if available)
+equity_risk_premium = data.pct_change().fillna(0)  # Daily returns
+
+# Step 3: Generate signals based on rolling average of returns (as a basic proxy for risk premium)
+rolling_mean = equity_risk_premium.rolling(window=252).mean()  # 12-month rolling average
+signal = (rolling_mean > 0).astype(int)  # Long if the premium is positive
+
+# Step 4: Calculate strategy returns
+returns = equity_risk_premium
+strategy_returns = (signal.shift(1) * returns).mean(axis=1)  # Shift to avoid look-ahead bias
+
+# Step 5: Performance metrics
+cumulative_returns = (1 + strategy_returns).cumprod()
+
+# Plot the strategy performance
+plt.figure(figsize=(12, 6))
+plt.plot(cumulative_returns, label='Equity Risk Premium Strategy')
+plt.title('Equity Risk Premium Harvester - Using FGL, VOO, and SPY')
+plt.xlabel('Date')
+plt.ylabel('Cumulative Returns')
+plt.legend()
+plt.show()
+
+# Step 6: Basic performance statistics
+sharpe_ratio = np.mean(strategy_returns) / np.std(strategy_returns) * np.sqrt(252)
+max_drawdown = (cumulative_returns / cumulative_returns.cummax() - 1).min()
+
+print(f"Sharpe Ratio: {sharpe_ratio:.2f}")
+print(f"Maximum Drawdown: {max_drawdown:.2%}")
