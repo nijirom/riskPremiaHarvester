@@ -1,7 +1,7 @@
 # riskPremiaHarvester
 
-Edge comes from mandated selling by institutional traders which lowers the fair value of a bond after it is no longer condisdered "investment grade"
+Edge comes from mandated selling of "fallen angel bonds" after they are no longer condisdered "investment grade" by institutional traders which lowers the fair value of said bonds 
 
-Harvested by accumalating long positions on FALN (iShares Fallen Angels Bond ETF)
+Harvested by comparing FALN (iShares Fallen Angels Bond ETF) against HYG and LQD ETFs
 
-Pre-cost Sharpe of 1.3
+Rolling Sharpe ratio, but out-of-sample evaluation exhibits a Sharpe of 1.3
