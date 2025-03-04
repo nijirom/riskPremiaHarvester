@@ -1,6 +1,6 @@
 # riskPremiaHarvester
 
-Edge comes from mandated selling of fallen angel bonds after they are no longer condisdered investment grade by institutional investors which lowers the fair value of said bonds 
+Edge comes from mandated selling of bonds after they are no longer considered investment grade by institutional investors which lowers the fair value of said bonds 
 
 Harvested by comparing FALN (iShares Fallen Angels Bond ETF) against HYG and LQD ETFs
 
