@@ -1,0 +1,20 @@
+Strategy Overview:
+
+Uses FALN (iShares Fallen Angels USD Bond ETF) as the main instrument
+Compares it against HYG (High Yield) and LQD (Investment Grade) ETFs
+Implements a spread-based trading strategy
+
+Key Components:
+Spread calculation between Fallen Angels and High Yield bonds
+Z-score based signal generation
+Long-short portfolio construction
+Comprehensive performance metrics
+
+Features:
+Historical data fetching using yfinance
+Spread analysis and signal generation
+Performance metrics calculation (Sharpe, Sortino, Drawdown)
+Visualization of results with three plots:
+Cumulative returns
+Spread and trading signals
+Rolling Sharpe ratio
